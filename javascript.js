@@ -49,7 +49,7 @@ function playRound()
 function game()
 {
     let player = 0, computer = 0, tie = 0
-    for (let i = 0; i < 5; i++) 
+    while (1) 
     {   
         let winner = playRound()
         if (winner === "player") 
@@ -63,6 +63,10 @@ function game()
         else
         {
             tie++
+        }
+        if (player === 5 || computer === 5) 
+        {
+            break    
         }
     }
 
