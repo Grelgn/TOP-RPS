@@ -46,3 +46,41 @@ function playRound()
     }
 }
 // play 5 times and keep score to report winner
+function game()
+{
+    let player = 0, computer = 0, tie = 0
+    for (let i = 0; i < 5; i++) 
+    {   
+        let winner = playRound()
+        if (winner === "player") 
+        {
+            player++    
+        }
+        else if (winner === "computer") 
+        {
+            computer++   
+        }
+        else
+        {
+            tie++
+        }
+    }
+
+    console.log("player: " + player)
+    console.log("computer: " + computer)
+    console.log("tie: " + tie)
+    if (player > computer) 
+    {
+        console.log("PLAYER WON")
+    }
+    else if (computer > player) 
+    {
+        console.log("COMPUTER WON")
+    }
+    else
+    {
+        console.log("TIE")
+    }
+}
+
+game()
