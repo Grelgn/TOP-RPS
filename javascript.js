@@ -16,5 +16,15 @@ function getComputerChoice()
     }
 }
 // get player choice
+function getPlayerChoice()
+{   
+    let choice = "NULL"
+    do {
+        let answer = prompt("Choose: Rock, Paper, Scissors")
+        choice = answer.toLowerCase()
+    } while (choice != "rock" && choice != "paper" && choice != "scissors");
+    
+    return choice
+}
 // play round and declare winner
 // play 5 times and keep score to report winner
