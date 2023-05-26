@@ -10,7 +10,7 @@ function getComputerChoice()
     {
         return "Paper"    
     }
-    else if (randomize === 2) 
+    else
     {
         return "Scissors"
     }
@@ -20,22 +20,49 @@ function getComputerChoice()
 const buttons = document.querySelectorAll('.btn')
 buttons.forEach(btn => btn.addEventListener('click', playRound))
 
-// play round and declare winner
+// score prerequisite
+const result = document.querySelector('.result')
+const pScore = document.querySelector('.playerScore')
+const tScore = document.querySelector('.tieScore')
+const cScore = document.querySelector('.computerScore')
+const winner = document.querySelector('.winner')
+let pCount = 0, tCount = 0, cCount = 0
+
+// play round and keep score
 function playRound(e)
 {
     let computer = getComputerChoice()
     let player = e.target.textContent
 
-    if ((player === "Rock" && computer === "Scissors") || (player === "Paper" && computer === "Rock") || (player === "Scissors" && computer === "Paper")) 
+    if (pCount === 5 || cCount === 5)
     {
-        return "player"
+        return 0
+    }
+    
+    if ((player === "Rock" && computer === "Scissors") || (player === "Paper" && computer === "Rock") || (player === "Scissors" && computer === "Paper")) 
+    {   
+        pCount++
+        pScore.textContent = pScore.textContent.replace((pCount - 1).toString(), pCount.toString())
+        result.textContent = "You Won"
+        if (pCount === 5) 
+        {
+            winner.textContent = "Player Wins!"
+        }
     }
     else if (player === computer) 
     {   
-        return "tie"
+        tCount++
+        tScore.textContent = tScore.textContent.replace((tCount - 1).toString(), tCount.toString())
+        result.textContent = "Tied"
     }
     else
     {
-        return "computer"
+        cCount++
+        cScore.textContent = cScore.textContent.replace((cCount - 1).toString(), cCount.toString())
+        result.textContent = "You Lost"
+        if (cCount === 5)
+        {
+            winner.textContent = "Computer Wins!"
+        }
     }
 }
